@@ -3,9 +3,13 @@ package com.example.sqlite_project;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import java.util.ArrayList;
@@ -52,5 +56,19 @@ public class MainActivity extends AppCompatActivity {
         {
             e.printStackTrace();
         }
+        Intent intent = new Intent(getApplicationContext(),Webview.class);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+               String courseName=  adapterView.getItemAtPosition(i).toString();
+               courseName =courseName.substring(courseName.indexOf(":") + 1, courseName.indexOf("Date"));
+
+                Log.d("Exam", courseName);
+
+                startActivity(intent);
+
+            }
+        });
     }
 }
