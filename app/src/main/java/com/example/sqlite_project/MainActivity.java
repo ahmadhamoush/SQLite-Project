@@ -61,11 +61,12 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-               String courseName=  adapterView.getItemAtPosition(i).toString();
+               String courseName=  adapterView.getItemAtPosition(i).toString().trim();
+               //getting courseName clicked
                courseName =courseName.substring(courseName.indexOf(":") + 1, courseName.indexOf("Date"));
-
                 Log.d("Exam", courseName);
-
+                //sending courseName to web view activity
+                intent.putExtra("course_name", courseName);
                 startActivity(intent);
 
             }
